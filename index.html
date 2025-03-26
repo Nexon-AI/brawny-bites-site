@@ -4,81 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brawny Bites - Premium Protein Snacks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #1E3A8A; /* Deep blue */
+            --secondary-color: #D4AF37; /* Gold */
+            --background-color: #f5f5f5;
+            --text-color: #333;
+        }
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #1E3A8A;
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
         header {
-            background: linear-gradient(to bottom, #1E3A8A, #3B82F6);
+            background-color: var(--primary-color);
             color: white;
-            text-align: center;
-            padding: 80px 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        header h1 {
-            font-size: 3.5em;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        nav {
-            background-color: #1E3A8A;
-            padding: 15px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 20px;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
         }
-        nav a, nav span {
+        .logo img {
+            height: 50px;
+        }
+        .user-actions a {
             color: white;
+            margin-left: 20px;
+            font-size: 1.2em;
+            text-decoration: none;
+        }
+        .site-title {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        nav {
+            background-color: var(--primary-color);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            margin: 0;
+        }
+        nav ul li {
             margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
             transition: color 0.3s ease;
         }
-        nav a:hover, nav span:hover {
-            color: #D4AF37;
-            cursor: pointer;
+        nav ul li a:hover {
+            color: var(--secondary-color);
         }
         .hero {
-            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
+            position: relative;
+            overflow: hidden;
             height: 500px;
+        }
+        .slider {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            transition: transform 0.5s ease;
+        }
+        .slider img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        button.prev, button.next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-            animation: fadeIn 2s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .shop-now {
-            background-color: #D4AF37;
-            color: #1E3A8A;
-            padding: 15px 40px;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
             font-size: 1.5em;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: transform 0.3s ease, background-color 0.3s ease;
         }
-        .shop-now:hover {
-            transform: scale(1.05);
-            background-color: #FFD700;
-        }
+        button.prev { left: 10px; }
+        button.next { right: 10px; }
         section {
             max-width: 1200px;
             margin: 30px auto;
@@ -88,32 +107,37 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
         section h2 {
-            color: #1E3A8A;
+            color: var(--primary-color);
             font-size: 2.5em;
-            border-bottom: 3px solid #D4AF37;
+            border-bottom: 3px solid var(--secondary-color);
             padding-bottom: 10px;
         }
-        .products-grid {
+        .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-        .product {
-            text-align: center;
-            padding: 20px;
-            background: #F9FAFB;
+        .product-card {
+            background-color: white;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
             transition: transform 0.3s ease;
         }
-        .product:hover {
+        .product-card:hover {
             transform: translateY(-5px);
         }
-        .product img {
-            max-width: 100%;
-            border-radius: 8px;
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
         }
-        .add-to-cart {
-            background-color: #1E3A8A;
+        .product-card h3 {
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+        .product-card button {
+            background-color: var(--secondary-color);
             color: white;
             padding: 10px 20px;
             border: none;
@@ -121,99 +145,122 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .add-to-cart:hover {
-            background-color: #3B82F6;
+        .product-card button:hover {
+            background-color: #FFD700;
         }
         footer {
-            background: linear-gradient(to top, #1E3A8A, #3B82F6);
+            background-color: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 30px;
+            padding: 20px;
             position: relative;
             width: 100%;
         }
-        #cart-count {
-            background-color: #D4AF37;
-            color: #1E3A8A;
-            border-radius: 50%;
-            padding: 2px 8px;
-            font-size: 0.9em;
-            margin-left: 5px;
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            header { flex-direction: column; }
+            .user-actions { margin-top: 10px; }
+            nav ul { flex-direction: column; }
+            nav ul li { margin: 10px 0; }
+            .slider img { height: 300px; }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Brawny Bites</h1>
-        <p>Premium Protein Snacks</p>
+        <div class="logo">
+            <img src="ndn.png.png" alt="Brawny Bites">
+        </div>
+        <div class="user-actions">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#">Login</a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        </div>
     </header>
-
+    <h1 class="site-title">Brawny Bites</h1>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <span onclick="alert('Sign In feature coming soon!')">Sign In</span>
-        <span onclick="alert('Cart view coming soon!')">Cart <span id="cart-count">0</span></span>
+        <ul>
+            <li><a href="#shop">Shop Products</a></li>
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#subscription">Subscription</a></li>
+            <li><a href="#apparel">Apparel</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
     </nav>
-
-    <div class="hero">
-        <h2>Elevate Your Snacking</h2>
-        <a href="#shop" class="shop-now">Shop Now</a>
-    </div>
-
-    <section id="home">
-        <h2>Welcome to Brawny Bites</h2>
-        <p>Indulge in high-protein, low-calorie snacks crafted with premium, all-natural ingredients. Designed for the discerning snacker—college students, fitness buffs, and flavor lovers alike.</p>
+    <section class="hero">
+        <div class="slider">
+            <img src="Chips.jpg" alt="Protein Chips">
+            <img src="Healthy Snacking.jpg" alt="Healthy Snacking">
+            <img src="Jogging.jpg" alt="Active Lifestyle">
+        </div>
+        <button class="prev">❮</button>
+        <button class="next">❯</button>
     </section>
-
     <section id="shop">
-        <h2>Our Premium Collection</h2>
-        <div class="products-grid">
-            <div class="product">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Protein Chips">
-                <h3>Protein Chips</h3>
-                <p>30-40g Protein, Under 150 Calories</p>
-                <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+        <h2>Shop Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="Chips.jpg" alt="Protein Chips">
+                <h3>Brawny Bites Protein Chips</h3>
+                <p>$3.50 - 30-40g Protein, Under 150 Calories</p>
+                <button>Add to Cart</button>
             </div>
-            <div class="product">
-                <img src="https://images.unsplash.com/photo-1565299624946-baccd3051810?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Subscription Box">
+            <div class="product-card">
+                <img src="Subscription Box.jpg" alt="Subscription Box">
                 <h3>Subscription Box</h3>
-                <p>8 Bags for $14.99/Month</p>
-                <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                <p>$14.99/Month - 8 Bags</p>
+                <button>Add to Cart</button>
             </div>
-            <div class="product">
-                <img src="https://images.unsplash.com/photo-1576092768241-dec1a1aabe00?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Apparel">
-                <h3>Luxury Apparel</h3>
-                <p>Hoodies & Shirts, $25</p>
-                <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+            <div class="product-card">
+                <img src="Apparel.avif" alt="Apparel">
+                <h3>Brawny Apparel</h3>
+                <p>$25 - Hoodies & Shirts</p>
+                <button>Add to Cart</button>
             </div>
         </div>
     </section>
-
-    <section id="about">
-        <h2>About Us</h2>
-        <p>At Brawny Bites, we’re redefining snacking with quality you can taste. Made in Michigan State University’s venture kitchen, our snacks blend nutrition, flavor, and affordability into every bite.</p>
+    <section id="mission">
+        <h2>Our Mission</h2>
+        </p> Brawny Bites addresses a critical challenge in the snack food industry: the scarcity of nutritious, affordable snacks that don’t compromise on taste. We’re revolutionizing snacking by offering high-protein, low-calorie options crafted with all-natural ingredients, making healthy eating accessible and enjoyable for all.</p>
     </section>
-
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: cloughxa@msu.edu</p>
-        <p>Phone: (443) 850-7421</p>
-        <p>Instagram: @Brawny_Bites</p>
+    <section id="subscription">
+        <h2>Subscription</h2>
+        <p>Join the Brawny Bites Subscription Box for just $14.99/month and get 8 bags of our premium protein chips delivered to your door. Perfect for college students and health-conscious snackers on a budget.</p>
     </section>
-
+    <section id="apparel">
+        <h2>Apparel</h2>
+        <p>Rock your Brawny Bites pride with our stylish hoodies and shirts, priced at $25 each. Designed for fitness enthusiasts and fans of our mission alike.</p>
+    </section>
+    <section id="faq">
+        <h2>FAQ</h2>
+        <p><strong>What makes Brawny Bites different?</strong> Our snacks offer superior nutrition with 30-40g of protein per serving, low calories, and bold flavors—all at an affordable price of $3.50 or less per bag.</p>
+        <p><strong>Where are they made?</strong> Crafted in Michigan State University’s venture kitchen, ensuring quality and freshness.</p>
+        <p><strong>How can I contact you?</strong> Reach us at cloughxa@msu.edu or (443) 850-7421.</p>
+    </section>
     <footer>
-        <p>© 2025 Brawny Bites. Crafted with Care.</p>
+        <p>© 2025 Brawny Bites. All rights reserved.</p>
+        <p>Contact us: cloughxa@msu.edu | (443) 850-7421</p>
+        <p>Follow us: <a href="#">Instagram</a> | <a href="#">Twitter</a> | <a href="#">Facebook</a></p>
     </footer>
-
     <script>
-        let cartCount = 0;
-        function addToCart() {
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-            alert('Added to cart! Checkout coming soon.');
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider img');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+            const offset = -currentSlide * 100;
+            document.querySelector('.slider').style.transform = `translateX(${offset}%)`;
         }
+
+        document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide + 1));
+        document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide - 1));
+        setInterval(() => showSlide(currentSlide + 1), 5000);
     </script>
 </body>
 </html>
